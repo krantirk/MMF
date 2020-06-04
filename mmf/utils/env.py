@@ -131,6 +131,9 @@ def setup_imports():
             importlib.import_module("mmf.models." + module_name)
         elif f.find("trainer") != -1:
             splits = f.split(os.sep)
+            folder_name = splits[-2]
+            if folder_name == "core" or folder_name == "hooks":
+                continue
             file_name = splits[-1]
             module_name = file_name[: file_name.find(".py")]
             importlib.import_module("mmf.trainers." + module_name)
